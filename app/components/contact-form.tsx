@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { sendEmail } from "../actions/send-email"
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -11,24 +11,44 @@ export function ContactForm() {
     company: "",
     message: "",
   })
+  const [status, setStatus] = useState<{ success?: boolean; message?: string } | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData)
-    // Reset form or show success message
-    alert("¡Gracias por contactarnos! Te responderemos a la brevedad.")
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      message: "",
-    })
+    setIsSubmitting(true)
+    setStatus(null)
+
+    try {
+      const formDataToSend = new FormData()
+      Object.entries(formData).forEach(([key, value]) => {
+        formDataToSend.append(key, value)
+      })
+
+      const result = await sendEmail(formDataToSend)
+      setStatus(result)
+
+      if (result.success) {
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          message: "",
+        })
+      }
+    } catch (error) {
+      setStatus({
+        success: false,
+        message: "Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -99,14 +119,24 @@ export function ContactForm() {
           />
         </div>
 
+        {status && (
+          <div
+            className={`p-4 rounded-sm ${
+              status.success ? "bg-green-500/20 text-green-300" : "bg-red-500/20 text-red-300"
+            }`}
+          >
+            {status.message}
+          </div>
+        )}
+
         <button
           type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-sm font-medium transition-all"
+          disabled={isSubmitting}
+          className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-sm font-medium transition-all disabled:opacity-70"
         >
-          Enviar mensaje
+          {isSubmitting ? "Enviando..." : "Enviar mensaje"}
         </button>
       </div>
     </form>
   )
 }
-

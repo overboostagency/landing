@@ -28,6 +28,13 @@ export function VideoHero() {
     }
   }, [])
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
       {/* Video de fondo */}
@@ -70,11 +77,14 @@ export function VideoHero() {
           </h1>
 
           <p className="text-xl text-gray-300 mb-8">
-            Con un enfoque basado en datos, hacemos que cada peso rinda al máximo.
+            Con un enfoque basado en datos, hacemos que cada centavo rinda al máximo.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-sm font-medium transition-all flex items-center gap-2">
+            <button
+              onClick={() => scrollToSection("contacto")}
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-sm font-medium transition-all flex items-center gap-2 justify-center"
+            >
               <span>Acelera tu negocio</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,8 +100,11 @@ export function VideoHero() {
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-            <button className="border border-white/30 hover:border-white/60 px-8 py-3 rounded-sm font-medium transition-all">
-              Conoce nuestros servicios
+            <button
+              onClick={() => scrollToSection("enfoque")}
+              className="border border-white/30 hover:border-white/60 px-8 py-3 rounded-sm font-medium transition-all"
+            >
+              Conoce nuestro enfoque
             </button>
           </div>
         </div>
@@ -99,4 +112,3 @@ export function VideoHero() {
     </section>
   )
 }
-

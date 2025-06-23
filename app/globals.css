@@ -25,31 +25,73 @@
   --radius: 0.25rem;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  scrollbar-width: thin; /* Para Firefox */
+  scrollbar-color: #333 transparent; /* Para Firefox */
+}
+
 body {
   @apply bg-black text-white;
   overflow-x: hidden;
+  margin-right: 0 !important; /* Evita saltos cuando aparece/desaparece la scrollbar */
 }
 
-/* Custom scrollbar */
+/* Scrollbar overlay para Chrome, Safari y Edge */
 ::-webkit-scrollbar {
   width: 8px;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111;
+  background-color: transparent;
+  margin: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background-color: #333;
   border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ef4444;
+  background-color: #ef4444;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Ocultar scrollbar cuando no se está usando */
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:vertical:hover {
+  min-height: 30px;
 }
 
+/* Clase para contenedores con scroll */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #ef4444;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}

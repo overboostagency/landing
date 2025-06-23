@@ -84,4 +84,3 @@ export function PowerBar({ value }: PowerBarProps) {
     </div>
   )
 }
-
