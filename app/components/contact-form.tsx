@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { sendEmail } from "../actions/send-email"
+import { trackFormSubmission } from "./gtm-events"
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -23,6 +24,9 @@ export function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
     setStatus(null)
+
+    // Track form submission attempt
+    trackFormSubmission("contact_form")
 
     try {
       const formDataToSend = new FormData()

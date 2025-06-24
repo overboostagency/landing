@@ -4,6 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import { trackCTAClick, trackNavigation } from "./gtm-events"
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -14,6 +15,16 @@ export function NavBar() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" })
     }
+  }
+
+  const handleCTAClick = (location: string) => {
+    trackCTAClick("Consulta Gratuita", location)
+    scrollToSection("contacto")
+  }
+
+  const handleNavClick = (linkText: string, sectionId: string) => {
+    trackNavigation(linkText, `#${sectionId}`)
+    scrollToSection(sectionId)
   }
 
   return (
@@ -28,25 +39,25 @@ export function NavBar() {
 
           <nav className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection("enfoque")}
+              onClick={() => handleNavClick("Enfoque", "enfoque")}
               className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
             >
               Enfoque
             </button>
             <button
-              onClick={() => scrollToSection("servicios")}
+              onClick={() => handleNavClick("Servicios", "servicios")}
               className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
             >
               Servicios
             </button>
             <button
-              onClick={() => scrollToSection("clientes")}
+              onClick={() => handleNavClick("Casos de Éxito", "clientes")}
               className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
             >
               Casos de Éxito
             </button>
             <button
-              onClick={() => scrollToSection("contacto")}
+              onClick={() => handleNavClick("Contacto", "contacto")}
               className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
             >
               Contacto
@@ -55,7 +66,7 @@ export function NavBar() {
 
           <div className="hidden md:block">
             <button
-              onClick={() => scrollToSection("contacto")}
+              onClick={() => handleCTAClick("navbar_desktop")}
               className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-sm font-medium transition-all"
             >
               Consulta Gratuita
@@ -76,31 +87,31 @@ export function NavBar() {
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
               <button
-                onClick={() => scrollToSection("enfoque")}
+                onClick={() => handleNavClick("Enfoque", "enfoque")}
                 className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
               >
                 Enfoque
               </button>
               <button
-                onClick={() => scrollToSection("servicios")}
+                onClick={() => handleNavClick("Servicios", "servicios")}
                 className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
               >
                 Servicios
               </button>
               <button
-                onClick={() => scrollToSection("clientes")}
+                onClick={() => handleNavClick("Casos de Éxito", "clientes")}
                 className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
               >
                 Casos de Éxito
               </button>
               <button
-                onClick={() => scrollToSection("contacto")}
+                onClick={() => handleNavClick("Contacto", "contacto")}
                 className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
               >
                 Contacto
               </button>
               <button
-                onClick={() => scrollToSection("contacto")}
+                onClick={() => handleCTAClick("navbar_mobile")}
                 className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-sm font-medium transition-all w-full mt-2"
               >
                 Consulta Gratuita
