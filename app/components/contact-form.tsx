@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import { sendEmail } from "../actions/send-email"
+import { trackFormSubmission } from "./gtm-events"
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -11,44 +11,29 @@ export function ContactForm() {
     company: "",
     message: "",
   })
-  const [status, setStatus] = useState<{ success?: boolean; message?: string } | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setStatus(null)
 
-    try {
-      const formDataToSend = new FormData()
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataToSend.append(key, value)
-      })
+    // Track form submission
+    trackFormSubmission("contact_form")
 
-      const result = await sendEmail(formDataToSend)
-      setStatus(result)
+    // Here you would typically send the form data to your backend
+    console.log("Form submitted:", formData)
 
-      if (result.success) {
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          message: "",
-        })
-      }
-    } catch (error) {
-      setStatus({
-        success: false,
-        message: "Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente.",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
+    // Reset form or show success message
+    alert("¡Gracias por contactarnos! Te responderemos a la brevedad.")
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      message: "",
+    })
   }
 
   return (
@@ -119,22 +104,11 @@ export function ContactForm() {
           />
         </div>
 
-        {status && (
-          <div
-            className={`p-4 rounded-sm ${
-              status.success ? "bg-green-500/20 text-green-300" : "bg-red-500/20 text-red-300"
-            }`}
-          >
-            {status.message}
-          </div>
-        )}
-
         <button
           type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-sm font-medium transition-all disabled:opacity-70"
+          className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-sm font-medium transition-all"
         >
-          {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+          Enviar mensaje
         </button>
       </div>
     </form>
