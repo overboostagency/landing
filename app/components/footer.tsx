@@ -1,37 +1,29 @@
-import Image from "next/image"
-import Link from "next/link"
+"use client"
+
+import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-zinc-900/80 border-t border-zinc-800 py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
-            <Image src="/logo.svg" alt="OVERBOOST AGENCY" width={120} height={65} className="h-20 w-auto mb-4" />
-            <p className="text-gray-400 mb-4">
-              Agencia de software especializada en IA. Construimos agentes que desbloquean crecimiento.
+    <footer className="bg-black text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo y descripción */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 bg-red-600 transform rotate-45"></div>
+              <span className="text-xl font-bold">OVERBOOST</span>
+            </div>
+            <p className="text-gray-400 mb-6 max-w-md">
+              Potenciamos tu negocio con estrategias de marketing digital que generan resultados reales y medibles.
             </p>
-            <div className="flex gap-4">
+            <div className="flex space-x-4">
               <a
                 href="https://www.instagram.com/overboost.agency/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
+                <Instagram className="w-6 h-6" />
               </a>
               <a
                 href="https://www.linkedin.com/company/overboost-agency/"
@@ -39,141 +31,64 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
+                <Linkedin className="w-6 h-6" />
               </a>
             </div>
           </div>
 
+          {/* Servicios */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Servicios Core</h3>
-            <ul className="space-y-2">
+            <h3 className="text-lg font-semibold mb-4">Servicios</h3>
+            <ul className="space-y-2 text-gray-400">
               <li>
-                <p className="text-gray-400">Agentes de IA a Medida</p>
+                <a href="#servicios" className="hover:text-white transition-colors">
+                  Paid Media
+                </a>
               </li>
               <li>
-                <p className="text-gray-400">Automatización e Integración</p>
+                <a href="#servicios" className="hover:text-white transition-colors">
+                  SEO
+                </a>
               </li>
               <li>
-                <p className="text-gray-400">Performance Marketing</p>
+                <a href="#servicios" className="hover:text-white transition-colors">
+                  Social Media
+                </a>
+              </li>
+              <li>
+                <a href="#servicios" className="hover:text-white transition-colors">
+                  Email Marketing
+                </a>
               </li>
             </ul>
           </div>
 
+          {/* Contacto */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Enlaces</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#servicios" className="text-gray-400 hover:text-white transition-colors">
-                  Servicios
-                </Link>
-              </li>
-              <li>
-                <Link href="#proceso" className="text-gray-400 hover:text-white transition-colors">
-                  Proceso
-                </Link>
-              </li>
-              <li>
-                <Link href="#casos-de-uso" className="text-gray-400 hover:text-white transition-colors">
-                  Casos de Uso
-                </Link>
-              </li>
-              <li>
-                <Link href="#contacto" className="text-gray-400 hover:text-white transition-colors">
-                  Contacto
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-bold mb-4">Contacto</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-red-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-                <div className="flex flex-col">
-                  <span className="text-gray-400 text-sm">Comercial: +54 3413762699</span>
-                  <span className="text-gray-400 text-sm">Soporte: +54 3416111183</span>
-                </div>
-              </li>
-              <li className="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-red-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <span className="text-gray-400">hola@overboost.agency</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-red-500 mt-0.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span className="text-gray-400">
-                  Paraguay 1439, Oficina A<br />
-                  Rosario, Argentina
-                </span>
-              </li>
-            </ul>
+            <h3 className="text-lg font-semibold mb-4">Contacto</h3>
+            <div className="space-y-3 text-gray-400">
+              <div className="flex items-center space-x-2">
+                <Mail className="w-4 h-4" />
+                <span>info@overboost.agency</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Phone className="w-4 h-4" />
+                <span>+54 9 11 1234-5678</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4" />
+                <span>Buenos Aires, Argentina</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-zinc-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} OVERBOOST. Todos los derechos reservados.
-            </p>
-            <div className="flex gap-4">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Política de Privacidad
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Términos y Condiciones
-              </Link>
-            </div>
-          </div>
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 OVERBOOST Agency. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
   )
 }
+
+export default Footer

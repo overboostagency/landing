@@ -18,7 +18,7 @@ export function NavBar() {
   }
 
   const handleCTAClick = (location: string) => {
-    trackCTAClick("Agenda una llamada", location)
+    trackCTAClick("Consulta Gratuita", location)
     scrollToSection("contacto")
   }
 
@@ -39,22 +39,22 @@ export function NavBar() {
 
           <nav className="hidden md:flex items-center space-x-8">
             <button
+              onClick={() => handleNavClick("Enfoque", "enfoque")}
+              className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
+            >
+              Enfoque
+            </button>
+            <button
               onClick={() => handleNavClick("Servicios", "servicios")}
               className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
             >
               Servicios
             </button>
             <button
-              onClick={() => handleNavClick("Proceso", "proceso")}
+              onClick={() => handleNavClick("Casos de Éxito", "clientes")}
               className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
             >
-              Proceso
-            </button>
-            <button
-              onClick={() => handleNavClick("Casos de Uso", "casos-de-uso")}
-              className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
-            >
-              Casos de Uso
+              Casos de Éxito
             </button>
             <button
               onClick={() => handleNavClick("Contacto", "contacto")}
@@ -69,7 +69,7 @@ export function NavBar() {
               onClick={() => handleCTAClick("navbar_desktop")}
               className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-sm font-medium transition-all"
             >
-              Agenda una llamada
+              Consulta Gratuita
             </button>
           </div>
 
@@ -87,22 +87,22 @@ export function NavBar() {
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
               <button
+                onClick={() => handleNavClick("Enfoque", "enfoque")}
+                className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
+              >
+                Enfoque
+              </button>
+              <button
                 onClick={() => handleNavClick("Servicios", "servicios")}
                 className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
               >
                 Servicios
               </button>
               <button
-                onClick={() => handleNavClick("Proceso", "proceso")}
+                onClick={() => handleNavClick("Casos de Éxito", "clientes")}
                 className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
               >
-                Proceso
-              </button>
-              <button
-                onClick={() => handleNavClick("Casos de Uso", "casos-de-uso")}
-                className="text-gray-300 hover:text-white transition-colors py-2 text-left bg-transparent border-none"
-              >
-                Casos de Uso
+                Casos de Éxito
               </button>
               <button
                 onClick={() => handleNavClick("Contacto", "contacto")}
@@ -114,7 +114,7 @@ export function NavBar() {
                 onClick={() => handleCTAClick("navbar_mobile")}
                 className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-sm font-medium transition-all w-full mt-2"
               >
-                Agenda una llamada
+                Consulta Gratuita
               </button>
             </nav>
           </div>
