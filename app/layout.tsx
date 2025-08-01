@@ -8,13 +8,11 @@ import { ScrollToTop } from "@/app/components/scroll-to-top"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "OVERBOOST | Agencia de Software Especializada en IA Autónoma",
-  description:
-    "Diseñamos y construimos agentes de IA a medida que se integran a tus operaciones, resuelven tareas repetitivas y desbloquean crecimiento.",
+  title: "OVERBOOST AGENCY - Performance Marketing",
+  description: "Convertimos presupuestos de marketing en motores de ingresos con un enfoque basado en datos.",
   openGraph: {
-    title: "OVERBOOST | Agencia de Software Especializada en IA Autónoma",
-    description:
-      "Diseñamos y construimos agentes de IA a medida que se integran a tus operaciones, resuelven tareas repetitivas y desbloquean crecimiento.",
+    title: "OVERBOOST AGENCY - Performance Marketing",
+    description: "Convertimos presupuestos de marketing en motores de ingresos con un enfoque basado en datos.",
     images: [
       {
         url: "/og-image.png",
@@ -28,9 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OVERBOOST | Agencia de Software Especializada en IA Autónoma",
-    description:
-      "Diseñamos y construimos agentes de IA a medida que se integran a tus operaciones, resuelven tareas repetitivas y desbloquean crecimiento.",
+    title: "OVERBOOST AGENCY - Performance Marketing",
+    description: "Convertimos presupuestos de marketing en motores de ingresos con un enfoque basado en datos.",
     images: ["/og-image.png"],
   },
   icons: {

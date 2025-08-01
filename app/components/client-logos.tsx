@@ -22,9 +22,10 @@ export function ClientLogos() {
             Confiaron en <span className="text-red-500">Nosotros</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Empresas que han acelerado su crecimiento.
+            Empresas que han acelerado su crecimiento con nuestras estrategias.
           </p>
         </div>
+
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
           {logos.map((logo, index) => (
             <div

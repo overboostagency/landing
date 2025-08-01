@@ -7,16 +7,21 @@ export function VideoHero() {
   const [contentVisible, setContentVisible] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  // Manejar el evento de finalización del video
   const handleVideoEnded = () => {
     setVideoEnded(true)
+    // Mostrar el contenido con un pequeño retraso para la animación
     setTimeout(() => {
       setContentVisible(true)
     }, 500)
   }
 
+  // Reproducir el video automáticamente cuando el componente se monta
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
+      videoRef.current.play().catch((error) => {
+        console.error("Error al reproducir el video automáticamente:", error)
+        // Si falla la reproducción automática, mostrar el contenido de inmediato
         setVideoEnded(true)
         setContentVisible(true)
       })
@@ -32,6 +37,7 @@ export function VideoHero() {
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
+      {/* Video de fondo */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
@@ -41,7 +47,11 @@ export function VideoHero() {
           playsInline
           onEnded={handleVideoEnded}
         />
+
+        {/* Overlay gradiente para mejorar la legibilidad del texto */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-70"></div>
+
+        {/* Elementos de fondo adicionales que aparecen después del video */}
         {videoEnded && (
           <>
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-red-600/20 to-transparent"></div>
@@ -52,25 +62,22 @@ export function VideoHero() {
 
       <div className="container mx-auto px-4 z-10 relative">
         <div
-          className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+          className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${
             contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           <div className="mb-4 inline-block">
             <span className="text-sm font-mono tracking-wider bg-red-600 px-3 py-1 rounded-sm">
-              Agencia de software especializada en IA
+              Performance Marketing Agency
             </span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Agentes de IA que actúan
-            <br />
-            <span className="text-red-500">Compañías que crecen</span>
+            Convertimos presupuestos de marketing en <span className="text-red-500">motores de ingresos</span>.
           </h1>
 
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Diseñamos y construimos agentes de IA a medida que se integran a tus operaciones, resuelven tareas
-            repetitivas y desbloquean crecimiento.
+          <p className="text-xl text-gray-300 mb-8">
+            Con un enfoque basado en datos, hacemos que cada centavo rinda al máximo.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -78,7 +85,7 @@ export function VideoHero() {
               onClick={() => scrollToSection("contacto")}
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-sm font-medium transition-all flex items-center gap-2 justify-center"
             >
-              <span>Conversemos sobre IA  </span>
+              <span>Acelera tu negocio</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -94,10 +101,10 @@ export function VideoHero() {
               </svg>
             </button>
             <button
-              onClick={() => scrollToSection("servicios")}
+              onClick={() => scrollToSection("enfoque")}
               className="border border-white/30 hover:border-white/60 px-8 py-3 rounded-sm font-medium transition-all"
             >
-              Ver servicios
+              Conoce nuestro enfoque
             </button>
           </div>
         </div>
