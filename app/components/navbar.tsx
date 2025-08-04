@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { trackCTAClick, trackNavigation } from "./gtm-events"
+import { SegmentedControl } from "./segmented-control"
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -31,12 +32,17 @@ export function NavBar() {
     <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
+          {/* Logo y Segmented Control */}
+          <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center">
               <Image src="/logo.svg" alt="OVERBOOST AGENCY" width={120} height={65} className="h-20 w-auto" />
             </Link>
+            <div className="hidden md:block">
+              <SegmentedControl />
+            </div>
           </div>
 
+          {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => handleNavClick("Servicios", "servicios")}
@@ -64,6 +70,7 @@ export function NavBar() {
             </button>
           </nav>
 
+          {/* CTA Button - Desktop */}
           <div className="hidden md:block">
             <button
               onClick={() => handleCTAClick("navbar_desktop")}
@@ -73,6 +80,7 @@ export function NavBar() {
             </button>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 hover:text-white">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -85,6 +93,11 @@ export function NavBar() {
       {isMenuOpen && (
         <div className="md:hidden bg-zinc-900 border-b border-zinc-800">
           <div className="container mx-auto px-4 py-4">
+            {/* Segmented Control - Mobile */}
+            <div className="mb-6 flex justify-center">
+              <SegmentedControl />
+            </div>
+
             <nav className="flex flex-col space-y-4">
               <button
                 onClick={() => handleNavClick("Servicios", "servicios")}
